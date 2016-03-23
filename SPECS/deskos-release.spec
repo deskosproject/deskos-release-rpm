@@ -28,6 +28,7 @@ Obsoletes:      centos-release
 Source0:        http://deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{centos_rel}.tar.gz
 Source1:        85-display-manager.preset
 Source2:        90-default.preset
+Source3:        DeskOS.repo
 
 %description
 %{product_family} release files
@@ -83,6 +84,9 @@ mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
 for file in CentOS-*.repo; do 
     install -m 644 $file %{buildroot}/etc/yum.repos.d
 done
+
+# DeskOS Repo
+install -m 644 %{SOURCE3} %{buildroot}/etc/yum.repos.d
 
 mkdir -p -m 755 %{buildroot}/etc/yum/vars
 install -m 0644 yum-vars-infra %{buildroot}/etc/yum/vars/infra

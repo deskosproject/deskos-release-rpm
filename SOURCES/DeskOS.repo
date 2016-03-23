@@ -1,0 +1,6 @@
+[deskos]
+name=DeskOS $releasever - $basearch
+baseurl=http://deskosproject.org/pub/deskos/releases/$releasever/$basearch/
+enabled=1
+gpgcheck=0
+priority=10
