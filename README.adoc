@@ -1,0 +1,3 @@
+= DeskOS: deskos-release RPM
+
+Creates the _deskos-release_ RPM for DeskOS.
