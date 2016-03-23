@@ -18,7 +18,7 @@ Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
 License:        GPLv2
-Provides:       centos-release = %{version}-%{release}
+Provides:       centos-release = %{version}
 Provides:       centos-release(upstream) = %{upstream_rel}
 Provides:       redhat-release = %{upstream_rel}
 Provides:       system-release = %{upstream_rel}
