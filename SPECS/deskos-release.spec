@@ -9,11 +9,11 @@
 %define upstream_rel 7.2
 %define centos_rel 2.1511
 #define beta Beta
-%define dist .el%{dist_release_version}.centos
+%define dist .el%{dist_release_version}.deskos
 
 Name:           deskos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.2.10
+Release:        %{centos_rel}%{?dist}.0.1
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
@@ -28,7 +28,8 @@ Obsoletes:      centos-release
 Source0:        http://deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{centos_rel}.tar.gz
 Source1:        85-display-manager.preset
 Source2:        90-default.preset
-Source3:        DeskOS.repo
+Source3:        80-deskos.preset
+Source4:        DeskOS.repo
 
 %description
 %{product_family} release files
@@ -86,7 +87,7 @@ for file in CentOS-*.repo; do
 done
 
 # DeskOS Repo
-install -m 644 %{SOURCE3} %{buildroot}/etc/yum.repos.d
+install -m 644 %{SOURCE4} %{buildroot}/etc/yum.repos.d
 
 mkdir -p -m 755 %{buildroot}/etc/yum/vars
 install -m 0644 yum-vars-infra %{buildroot}/etc/yum/vars/infra
@@ -118,6 +119,7 @@ install -m 644 Contributors %{buildroot}/%{_docdir}/centos-release
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/system-preset/
 install -m 0644 %{SOURCE1} %{buildroot}%{_prefix}/lib/systemd/system-preset/
 install -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/systemd/system-preset/
+install -m 0644 %{SOURCE3} %{buildroot}%{_prefix}/lib/systemd/system-preset/
 
 
 %clean
