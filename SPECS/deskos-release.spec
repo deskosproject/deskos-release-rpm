@@ -13,7 +13,7 @@
 
 Name:           deskos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.0.1
+Release:        %{centos_rel}%{?dist}.1.0
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
@@ -25,11 +25,12 @@ Provides:       system-release = %{upstream_rel}
 Provides:       system-release(releasever) = %{base_release_version}
 Obsoletes:      centos-release
 
-Source0:        http://deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{centos_rel}.tar.gz
+Source0:        https://dl.deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{centos_rel}.tar.gz
 Source1:        85-display-manager.preset
 Source2:        90-default.preset
 Source3:        80-deskos.preset
 Source4:        DeskOS.repo
+Source5:        RPM-GPG-KEY-DeskOS-7
 
 %description
 %{product_family} release files
@@ -89,6 +90,9 @@ done
 # DeskOS Repo
 install -m 644 %{SOURCE4} %{buildroot}/etc/yum.repos.d
 
+# DeskOS GPG Key
+install -m 644 %{SOURCE5} %{buildroot}/etc/pki/rpm-gpg
+
 mkdir -p -m 755 %{buildroot}/etc/yum/vars
 install -m 0644 yum-vars-infra %{buildroot}/etc/yum/vars/infra
 
@@ -146,6 +150,9 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org>
+- GPG Key Added
+
 * Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - Initial setup for DeskOS
 
