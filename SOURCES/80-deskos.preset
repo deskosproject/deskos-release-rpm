@@ -2,8 +2,8 @@
 # DeskOS
 #
 
-# disable sshd socket by default on workstation
+# disable sshd socket by default
 disable sshd.socket
 
-# disable sshd service by default on workstation
+# disable sshd service by default
 disable sshd.service
