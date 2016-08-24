@@ -1,11 +1,19 @@
 [deskos]
 name=DeskOS $releasever - $basearch
-#baseurl=http://dl.deskosproject.org/pub/deskos/releases/$releasever/$basearch/
+#baseurl=https://dl.deskosproject.org/pub/deskos/releases/$releasever/$basearch/
 mirrorlist=https://dl.deskosproject.org/pub/deskos/deskos-mirror.lst
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-DeskOS-$releasever
 priority=10
+
+[deskos-testing]
+name=DeskOS $releasever - $basearch - Test Updates
+baseurl=https://dl.deskosproject.org/pub/deskos/testing/$releasever/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-DeskOS-$releasever
+priority=5
 
 [deskos-source]
 name=DeskOS $releasever - Source

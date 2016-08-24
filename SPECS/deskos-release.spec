@@ -13,7 +13,7 @@
 
 Name:           deskos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.1.0
+Release:        %{centos_rel}%{?dist}.1.1
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
@@ -150,63 +150,11 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
-* Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org>
-- GPG Key Added
+* Wed Aug 24 2016 Ricardo Arguello <rarguello@deskosproject.org> - 1.1
+- Added deskos-testing repo
 
-* Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org>
+* Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org> - 1.0
+- GPG Key added
+
+* Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org> - 0.1
 - Initial setup for DeskOS
-
-* Tue Dec  1 2015 Johnny Hughes <johnny@centos.org>
-- Bump Release for 1511
-- Add CentOS-Media.repo and put CentOS-CR.repo in the
-  tarball, then removed patch1000 
-
-* Tue Mar 31 2015 Karanbir Singh <kbsingh@centos.org>
-- rework upstream communication
-- re-establish redhat-release as a symlink from centos-release
-
-* Fri Mar 27 2015 Karanbir Singh <kbsingh@centos.org>
-- dont auto enable the initial-setup tui mode
-
-* Thu Mar 19 2015 Karanbir Singh <kbsingh@centos.org>
-- Bump Release for 1503 
-- add ABRT specific content to os-release
-- split redhat-release from centos-release
-
-* Tue Feb 17 2015 Karanbir Singh <kbsingh@centos.org>
-- Include the CR repo for upcoming 7.1 release ( and beyond )
-
-* Thu Aug 21 2014 Karanbir Singh <kbsingh@centos.org>
-- add a yum var to route mirrorlist accurately
-- add CentOS-fastrack repo
-- Trim the CentOS-Debug-7 key
-- rename the Debug repo to base-debug so yum-utils can consume easier
-
-* Tue Jul 15 2014 Karanbir Singh <kbsingh@centos.org>
-- add CentOS-7 Debug rpm key
-
-* Fri Jul 4 2014 Karanbir Singh <kbsingh@centos.org>
-- Roll in the final name change conversation results
-- Stage for release content
-- Add yum repos
-- Add distro keys ( incomplete )
-
-* Mon Jun 30 2014 Karanbir Singh <kbsingh@centos.org>
-- add a macro to macros.dist to indicate just centos as well 
-
-* Tue Jun 24 2014 Karanbir Singh <kbsingh@centos.org> 
-- Trial run for CentOS DateStamp release
-- Add stubs for the yum repos
-- fix os-release to only have one ID_LIKE ( Avij #7171)
-- make the yum repo definitions be config noreplace ( Trevor )
-
-* Tue Jun 17 2014 Karanbir Singh <kbsingh@centos.org> 7.0.el7.0.140617.3
-- rebuild for 2014-06-17 pub qa release
-- ensure we get the right cpe info
-- ensure centos-release is trackable
-
-* Sat Jun 14 2014 Karanbir Singh <kbsingh@centos.org> 7.0.el7.0.140614.2
-- prep for public QA release tag as broken
-
-* Fri Jun 13 2014 Karanbir Singh <kbsingh@centos.org> 7-0.el7
-- initial setup for centos-rc
