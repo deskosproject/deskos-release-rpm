@@ -1,19 +1,17 @@
 %define debug_package %{nil}
 %define product_family DeskOS Linux
-%define variant_titlecase Server
-%define variant_lowercase server
 %define release_name Core
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
 %define upstream_rel 7.2
 %define centos_rel 2.1511
-#define beta Beta
+%define deskos_rel 2.1609
 %define dist .el%{dist_release_version}.deskos
 
 Name:           deskos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.1.1
+Release:        %{deskos_rel}.0.1
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
@@ -25,7 +23,7 @@ Provides:       system-release = %{upstream_rel}
 Provides:       system-release(releasever) = %{base_release_version}
 Obsoletes:      centos-release
 
-Source0:        https://dl.deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{centos_rel}.tar.gz
+Source0:        https://dl.deskosproject.org/sources/deskos-release/deskos-release-%{base_release_version}-%{deskos_rel}.tar.gz
 Source1:        85-display-manager.preset
 Source2:        90-default.preset
 Source3:        80-deskos.preset
@@ -48,17 +46,19 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/etc
 
 # create /etc/system-release and /etc/redhat-release
-echo "%{product_family} release %{full_release_version}.%{centos_rel} (%{release_name}) " > %{buildroot}/etc/centos-release
+echo "%{product_family} release %{full_release_version}.%{deskos_rel} (%{release_name}) " > %{buildroot}/etc/centos-release
 echo "Derived from Red Hat Enterprise Linux %{upstream_rel} (Source)" > %{buildroot}/etc/centos-release-upstream
+echo "Derived from CentOS Linux %{full_release_version}.%{centos_rel}" > %{buildroot}/etc/deskos-release-upstream
 ln -s centos-release %{buildroot}/etc/system-release
 ln -s centos-release %{buildroot}/etc/redhat-release
+ln -s centos-release %{buildroot}/etc/deskos-release
 
 # create /etc/os-release
 cat << EOF >>%{buildroot}/etc/os-release
 NAME="%{product_family}"
 VERSION="%{full_release_version} (%{release_name})"
-ID="centos"
-ID_LIKE="rhel fedora"
+ID="deskos"
+ID_LIKE="centos rhel fedora"
 VERSION_ID="%{full_release_version}"
 PRETTY_NAME="%{product_family} %{full_release_version} (%{release_name})"
 ANSI_COLOR="0;31"
@@ -101,6 +101,8 @@ install -d -m 755 %{buildroot}/etc/rpm
 cat >> %{buildroot}/etc/rpm/macros.dist << EOF
 # dist macros.
 
+%%deskos_ver %{base_release_version}
+%%deskos %{base_release_version}
 %%centos_ver %{base_release_version}
 %%centos %{base_release_version}
 %%rhel %{base_release_version}
@@ -111,11 +113,13 @@ EOF
 # use unbranded datadir
 mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
 ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
+ln -s centos-release %{buildroot}/%{_datadir}/deskos-release
 install -m 644 EULA %{buildroot}/%{_datadir}/centos-release
 
 # use unbranded docdir
 mkdir -p -m 755 %{buildroot}/%{_docdir}/centos-release
 ln -s centos-release %{buildroot}/%{_docdir}/redhat-release
+ln -s centos-release %{buildroot}/%{_docdir}/deskos-release
 install -m 644 GPL %{buildroot}/%{_docdir}/centos-release
 install -m 644 Contributors %{buildroot}/%{_docdir}/centos-release
 
@@ -132,8 +136,10 @@ rm -rf %{buildroot}
 %files
 %defattr(0644,root,root,0755)
 /etc/redhat-release
+/etc/deskos-release
 /etc/system-release
 /etc/centos-release
+/etc/deskos-release-upstream
 /etc/centos-release-upstream
 %config(noreplace) /etc/os-release
 %config /etc/system-release-cpe
@@ -144,17 +150,22 @@ rm -rf %{buildroot}
 %config(noreplace) /etc/yum/vars/*
 /etc/rpm/macros.dist
 %{_docdir}/redhat-release
+%{_docdir}/deskos-release
 %{_docdir}/centos-release/*
 %{_datadir}/redhat-release
+%{_datadir}/deskos-release
 %{_datadir}/centos-release/*
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
-* Wed Aug 24 2016 Ricardo Arguello <rarguello@deskosproject.org> - 1.1
+* Thu Sep 1 2016 Ricardo Arguello <rarguello@deskosproject.org>
+- Changed the release number and added /etc/deskos-release
+
+* Wed Aug 24 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - Added deskos-testing repo
 
-* Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org> - 1.0
+* Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - GPG Key added
 
-* Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org> - 0.1
+* Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - Initial setup for DeskOS
