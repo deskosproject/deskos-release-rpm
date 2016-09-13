@@ -21,3 +21,10 @@ baseurl=http://dl.deskosproject.org/pub/deskos/releases/$releasever/source/
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-DeskOS-$releasever
+
+[deskos-testing-source]
+name=DeskOS $releasever - $basearch - Test Updates Source
+baseurl=https://dl.deskosproject.org/pub/deskos/testing/$releasever/source/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-DeskOS-$releasever
