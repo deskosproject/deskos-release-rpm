@@ -4,9 +4,9 @@
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
-%define upstream_rel 7.2
-%define centos_rel 2.1511
-%define deskos_rel 2.1609
+%define upstream_rel 7.3
+%define centos_rel 3.1611
+%define deskos_rel 3.1611
 %define dist .el%{dist_release_version}.deskos
 
 Name:           deskos-release
@@ -158,14 +158,17 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Wed Dec 14 2016 Ricardo Arguello <rarguello@deskosproject.org>
+- Bump Release for 1611
+
 * Thu Sep 1 2016 Ricardo Arguello <rarguello@deskosproject.org>
-- Changed the release number and added /etc/deskos-release
+- Change the release number and add /etc/deskos-release
 
 * Wed Aug 24 2016 Ricardo Arguello <rarguello@deskosproject.org>
-- Added deskos-testing repo
+- Add deskos-testing repo
 
 * Thu May 12 2016 Ricardo Arguello <rarguello@deskosproject.org>
-- GPG Key added
+- Add GPG Key
 
 * Mon Mar 21 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - Initial setup for DeskOS
