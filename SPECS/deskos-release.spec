@@ -4,14 +4,14 @@
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
-%define upstream_rel 7.3
-%define centos_rel 3.1611
-%define deskos_rel 3.1611
+%define upstream_rel 7.4
+%define centos_rel 4.1708
+%define deskos_rel 4.1708
 %define dist .el%{dist_release_version}.deskos
 
 Name:           deskos-release
 Version:        %{base_release_version}
-Release:        %{deskos_rel}.0.1
+Release:        %{deskos_rel}
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 URL:            https://deskosproject.org
@@ -158,6 +158,9 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Tue Sep 26 2017 Ricardo Arguello <rarguello@deskosproject.org>
+- Bump Release for 1708
+
 * Wed Dec 14 2016 Ricardo Arguello <rarguello@deskosproject.org>
 - Bump Release for 1611
 
